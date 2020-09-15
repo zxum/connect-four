@@ -40,3 +40,11 @@ end
 
 myBoard = Board.new 
 
+class Player 
+  attr_accessor :name, :token
+
+  def initialize(name = nil, token = "yellow")
+    @name = name 
+    @token = token
+  end 
+end
