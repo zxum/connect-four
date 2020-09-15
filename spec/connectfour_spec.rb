@@ -20,7 +20,17 @@ describe 'Connect Four game logic' do
     end
   end
   
-  
+  describe "The Player" do 
+    it "has a name" do 
+      playerx = Player.new("playerx")
+      expect(playerx.name).to eq "playerx" 
+    end
+    
+    it "has a token" do 
+      playerx = Player.new("playerx","red")
+      expect(playerx.token).to eq "red"
+    end
+  end
 
 
 end
