@@ -48,3 +48,132 @@ class Player
     @token = token
   end 
 end
+
+
+
+class Game 
+  attr_accessor :player1, :player2, :board
+
+  def initialize
+    @player1 = Player.new("player1")
+    @player2 = Player.new("player2","red")
+    @board = Board.new
+  end 
+
+
+  def start_game 
+  end
+
+
+  def instructions 
+  end 
+
+  def game_over? 
+    return true if board_full? || winner?
+  end
+
+  def board_full? 
+    return true if @board.positions.flatten.each { |pos|
+      return false if pos == "◌"
+    }
+  end
+
+  def winner?
+    return true if row_win? || col_win? || fordia_win? 
+  end
+
+  def row_win? 
+    return true if @board.positions.each do |row| 
+      i = 0 
+      while i < 4
+        return true if (row[i] == "●" && 
+          row[i+1] == "●" && 
+          row[i+2] == "●" && 
+          row[i+3] == "●") ||  
+          (row[i] == "◎" && 
+          row[i+1] == "◎" && 
+          row[i+2] == "◎" && 
+          row[i+3] == "◎")
+        i += 1
+      end
+    end
+  end
+
+  def col_win?
+    row = 0 
+    col = 0
+    while row < 3 
+      while col < 7 
+        return true if (@board.positions[row][col] == "●" && 
+          @board.positions[row+1][col] == "●" && 
+          @board.positions[row+2][col] == "●" && 
+          @board.positions[row+3][col] == "●") ||
+          (@board.positions[row][col] == "◎" && 
+          @board.positions[row+1][col] == "◎" && 
+          @board.positions[row+2][col] == "◎" && 
+          @board.positions[row+3][col] == "◎")
+        col += 1
+      end 
+      col = 0 
+      row += 1 
+    end
+  end
+
+  def fordia_win? 
+    row = 0 
+    col = 0
+    while row < 3 
+      while col < 7 
+        return true if (@board.positions[row][col] == "●" && 
+          @board.positions[row+1][col+1] == "●" && 
+          @board.positions[row+2][col+2] == "●" && 
+          @board.positions[row+3][col+3] == "●") || 
+          (@board.positions[row][col] == "◎" && 
+          @board.positions[row+1][col+1] == "◎" && 
+          @board.positions[row+2][col+2] == "◎" && 
+          @board.positions[row+3][col+3] == "◎")
+        col += 1
+      end 
+      col = 0 
+      row += 1 
+    end
+  end 
+
+  def backdia_win?
+    row = 0 
+    col = 0
+    while row < 3 
+      while col < 7 
+        return true if (@board.positions[row][col] == "●" && 
+          @board.positions[row+1][col-1] == "●" && 
+          @board.positions[row+2][col-2] == "●" && 
+          @board.positions[row+3][col-3] == "●") || 
+          (@board.positions[row][col] == "◎" && 
+          @board.positions[row+1][col-1] == "◎" && 
+          @board.positions[row+2][col-2] == "◎" && 
+          @board.positions[row+3][col-3] == "◎")
+        col += 1
+      end 
+      col = 0 
+      row += 1 
+    end
+  end
+end
+
+myGame = Game.new 
+p myGame.fordia_win?
+# p myGame.col_win?
+# p myGame.board.positions
+
+
+# @board.positions = [
+#   ["◌", "◌", "◌", "◌", "◌", "◌", "◌"],
+#   ["◌", "◌", "◌", "◌", "◌", "◌", "◌"],
+#   ["◌", "◌", "◌", "●", "◌", "◌", "◌"],
+#   ["◌", "◌", "◌", "●", "◌", "◌", "◌"],
+#   ["◌", "◌", "◌", "●", "◌", "◌", "◌"],        
+#   ["◌", "◌", "◌", "●", "◌", "◌", "◌"]
+# ]
+
+# p "row:#{row} col:#{col} #{@board.positions[row][col]} #{@board.positions[row+1][col+1]} #{@board.positions[row+2][col+2]} #{@board.positions[row+3][col+3]}" 
+
