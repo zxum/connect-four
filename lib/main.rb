@@ -65,14 +65,29 @@ class Game
   end
 
   def instructions 
+    puts "Welcome to a game of Connect Four."
+    puts "This is a two player game."
+    puts "Player 1's token will look like this ●"
+    puts "Player 2's token will look like this ◎"
+    puts "and the board looks like this"
+    @board.display_board
+    puts "When it's your turn, select a row, and "
+    puts "your token will fall to the bottom. "
+    puts "To win, you must have four tokens in a "
+    puts "row, horizontally, vertically, or "
+    puts "diagonally. Otherwise, game will end "
+    puts "when the board is full. Have fun!"
   end 
 
   def play_round 
     until game_over? == true 
       p1 = get_pos
       select_position(@player1,p1)
+      @board.display_board
+      break if game_over? == true 
       p2 = get_pos
       select_position(@player2,p2)
+      @board.display_board
     end 
   end
 
@@ -198,7 +213,7 @@ class Game
 end
 
 myGame = Game.new 
-myGame.get_pos
+myGame.instructions
 # p myGame.col_win?
 # p myGame.board.positions
 
