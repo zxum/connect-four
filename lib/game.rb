@@ -14,6 +14,7 @@ class Game
     play 
   end
 
+  private 
   def instructions 
     puts "Welcome to a game of Connect Four."
     puts "This is a two player game."
