@@ -27,8 +27,8 @@ describe 'Connect Four game logic' do
     end
     
     it "has a token" do 
-      playerx = Player.new("playerx","red")
-      expect(playerx.token).to eq "red"
+      playerx = Player.new("playerx","◎")
+      expect(playerx.token).to eq "◎"
     end
   end
 
@@ -148,7 +148,16 @@ describe 'Connect Four game logic' do
       expect(@mygame.winner?).to eq true
     end
 
+    it "can add token to col" do 
+      @mygame.select_position(@mygame.player1,"0")
+      expect(@mygame.board.positions[5][0]).to eq(@mygame.player1.token)
+    end
 
+    it "can add token to col in next empty space from bottom" do 
+      @mygame.select_position(@mygame.player1,"0")
+      @mygame.select_position(@mygame.player2,"0") 
+      expect(@mygame.board.positions[4][0]).to eq(@mygame.player2.token)
+    end
 
   end
 
