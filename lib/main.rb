@@ -67,6 +67,9 @@ class Game
   def instructions 
   end 
 
+
+  
+
   def select_position(player,position)
     col = position.to_i 
     row = col_fall(player,col)
@@ -98,7 +101,7 @@ class Game
   end
 
   def row_win? 
-    return true if @board.positions.each do |row| 
+    @board.positions.each do |row| 
       i = 0 
       while i < 4
         return true if (row[i] == "●" && 
@@ -176,7 +179,7 @@ class Game
 end
 
 myGame = Game.new 
-
+myGame.get_pos
 # p myGame.col_win?
 # p myGame.board.positions
 
