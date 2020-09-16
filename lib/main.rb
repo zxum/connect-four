@@ -68,6 +68,18 @@ class Game
   end 
 
 
+
+
+  def get_pos
+    puts "Please select a column from (1 to 7)"
+    pos = gets.chomp.to_i
+    if (1..7).include? pos 
+      return pos 
+    else 
+      puts "Please enter a valid column."
+      get_pos
+    end 
+  end
   
 
   def select_position(player,position)
