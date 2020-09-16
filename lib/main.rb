@@ -67,7 +67,14 @@ class Game
   def instructions 
   end 
 
-
+  def play_round 
+    until game_over? == true 
+      p1 = get_pos
+      select_position(@player1,p1)
+      p2 = get_pos
+      select_position(@player2,p2)
+    end 
+  end
 
 
   def get_pos
