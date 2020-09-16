@@ -43,7 +43,7 @@ myBoard = Board.new
 class Player 
   attr_accessor :name, :token
 
-  def initialize(name = nil, token = "yellow")
+  def initialize(name = nil, token = "●")
     @name = name 
     @token = token
   end 
@@ -56,7 +56,7 @@ class Game
 
   def initialize
     @player1 = Player.new("player1")
-    @player2 = Player.new("player2","red")
+    @player2 = Player.new("player2","◎")
     @board = Board.new
   end 
 
@@ -64,9 +64,10 @@ class Game
   def start_game 
   end
 
-
   def instructions 
   end 
+
+  
 
   def game_over? 
     return true if board_full? || winner?
@@ -79,7 +80,7 @@ class Game
   end
 
   def winner?
-    return true if row_win? || col_win? || fordia_win? 
+    return true if row_win? || col_win? || fordia_win? || backdia_win?
   end
 
   def row_win? 
@@ -161,7 +162,7 @@ class Game
 end
 
 myGame = Game.new 
-p myGame.fordia_win?
+p myGame
 # p myGame.col_win?
 # p myGame.board.positions
 
