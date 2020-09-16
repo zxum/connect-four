@@ -67,7 +67,21 @@ class Game
   def instructions 
   end 
 
-  
+  def select_position(player,position)
+    col = position.to_i 
+    row = col_fall(player,col)
+    @board.positions[row][col] = player.token 
+  end
+
+  def col_fall(player,col)
+    row = 5 
+    while row > 0  
+      if @board.positions[row][col] == "◌" 
+        return row
+      end
+      row -= 1 
+    end 
+  end
 
   def game_over? 
     return true if board_full? || winner?
@@ -162,7 +176,7 @@ class Game
 end
 
 myGame = Game.new 
-p myGame
+
 # p myGame.col_win?
 # p myGame.board.positions
 
